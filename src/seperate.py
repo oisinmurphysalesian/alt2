@@ -1,9 +1,12 @@
 
 #open file
 import pandas as pd
+from tabulate import tabulate
+import matplotlib.pyplot as plt
+from IPython.display import display
 
 def open_file():
-    df = pandas.read_csv('data.csv' , sep=',')
+    df = pd.read_csv('debug.csv' , sep=',')
     return df
 ## determine segments
 
@@ -11,4 +14,31 @@ def open_file():
 ### write files
 def write_file(dataframe, path):
     #asdf
-    dataframe.to_csv(path)
+    pd.dataframe.to_csv(path)
+
+
+def split_dataframes(input_dataframe):
+    dataframes = []
+    while(True):
+        new_dataframe = pd.DataFrame()
+        #always include  first few cols
+        new_dataframe = new_dataframe.assign(input_dataframe.columns[0:4][0]: input_dataframe.columns[0:4][1:-1])
+        #take title of col, and clean it
+        title = input_dataframe.columns[5][0]
+        print(title)
+        #move right until col doesnt match
+        #create dataframe from all matching cols
+        #continue until col is blank
+        exit()
+
+
+
+df = open_file()
+
+df.style
+display(df)
+print(tabulate(df, headers = 'keys', tablefmt = 'psql'))
+
+split_dataframes(df)
+
+df
