@@ -22,7 +22,7 @@ def split_dataframes(input_dataframe):
     while(True):
         new_dataframe = pd.DataFrame()
         #always include  first few cols
-        new_dataframe = new_dataframe.assign(input_dataframe.columns[0:4][0]: input_dataframe.columns[0:4][1:-1])
+
         #take title of col, and clean it
         title = input_dataframe.columns[5][0]
         print(title)
@@ -32,6 +32,17 @@ def split_dataframes(input_dataframe):
         exit()
 
 
+def median(input_list):
+    output_list = input_list
+    return output_list
+
+def mode(input_list):
+    output_list = input_list
+    return output_list
+
+def mean(input_list):
+    output_list = input_list
+    return output_list
 
 df = open_file()
 
