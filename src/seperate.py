@@ -41,8 +41,11 @@ def mode(input_list):
     return output_list
 
 def mean(input_list):
-    output_list = input_list
-    return output_list
+    total = 0
+    for item in input_list:
+        total += item
+    average = total / len(input_list)
+    return average
 
 df = open_file()
 
