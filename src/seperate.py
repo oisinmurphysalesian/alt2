@@ -37,8 +37,21 @@ def median(input_list):
     return output_list
 
 def mode(input_list):
-    output_list = input_list
-    return output_list
+    value = []
+    amounts = []
+    for item in input_list:
+        if item not in value:
+            value.append(item)
+    for colour in value:
+        total = input_list.count(colour)
+        amounts.append(total)
+        
+    maxFreq = max(amounts)
+    maxFreqIndex = amounts.index(maxFreq)
+    mode = value[maxFreqIndex]
+    
+
+    return mode
 
 def mean(input_list):
     output_list = input_list
@@ -46,10 +59,8 @@ def mean(input_list):
 
 df = open_file()
 
-df.style
-display(df)
-print(tabulate(df, headers = 'keys', tablefmt = 'psql'))
 
-split_dataframes(df)
 
-df
+alsdjkfasjk = [1,2,2,2,3,4,4,5,6,7,8]
+
+print(mode(alsdjkfasjk))
