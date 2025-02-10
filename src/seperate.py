@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from IPython.display import display
 
 def open_file():
-    df = pd.read_csv('debug.csv' , sep=',')
+    df = pd.read_csv('data.csv' , sep=',')
     return df
 ## determine segments
 
@@ -74,3 +74,7 @@ df = open_file()
 alsdjkfasjk = [1,2,2,2,3,4,4,5,6,7,8]
 
 print(median(alsdjkfasjk))
+df.sort_values(by=["Mean Years of Schooling (1994)"])
+df["Mean Years of Schooling (1994)"].plot.line()
+
+plt.show()
