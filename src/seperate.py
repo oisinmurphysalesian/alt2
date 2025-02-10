@@ -33,8 +33,15 @@ def split_dataframes(input_dataframe):
 
 
 def median(input_list):
-    output_list = input_list
-    return output_list
+    input_list.sort()
+    if len(input_list) % 2 == 0:
+        middlePlusOne = len(input_list) // 2
+        median = (input_list[middlePlusOne -1] +
+        input_list[middlePlusOne]) / 2
+    else:
+        middle = len(input_list) // 2
+        median = input_list[middle]
+    return median
 
 def mode(input_list):
     value = []
@@ -66,4 +73,4 @@ df = open_file()
 
 alsdjkfasjk = [1,2,2,2,3,4,4,5,6,7,8]
 
-print(mode(alsdjkfasjk))
+print(median(alsdjkfasjk))
