@@ -69,8 +69,8 @@ def get_columns_for_year(df, year):
         'GNI Male': [col for col in df.columns if re.match(f"Gross National Income Per Capita, male \({year}\)", col)],
         'HDI Adjusted': [col for col in df.columns if re.match(f"Inequality-adjusted Human Development Index \({year}\)", col)],
         'Inequality': [col for col in df.columns if re.match(f"Coefficient of human inequality \({year}\)", col)],
-        'Loss': [col for col in df.columns if re.match(f"Overall loss \(\%\)  \({year}\)", col)],
-        'Inequality in life expectancy': [col for col in df.columns if re.match(f"Inequality in life expectancy  \({year}\)", col)]
+        'Loss': [col for col in df.columns if re.match(f"Overall loss \(\%\) \({year}\)", col)],
+        'Inequality in life expectancy': [col for col in df.columns if re.match(f"Inequality in life expectancy \({year}\)", col)],
         'Inequality in eduation': [col for col in df.columns if re.match(f"Inequality in eduation \({year}\)", col)],
         'Inequality in income': [col for col in df.columns if re.match(f"Inequality in income \({year}\)", col)],
         'Gender inequality': [col for col in df.columns if re.match(f"Gender Inequality Index \({year}\)", col)],
@@ -141,7 +141,7 @@ def interactive_plot(df):
     controls_frame.pack(side=tk.BOTTOM, fill=tk.X)
 
     # Create the slider widget for year selection
-    year_slider_widget = tk.Scale(controls_frame, from_=1990, to_=2021, orient=tk.HORIZONTAL)
+    year_slider_widget = tk.Scale(controls_frame, length=250, from_=1990, to_=2021, orient=tk.HORIZONTAL)
     year_slider_widget.set(2020)
     year_slider_widget.pack(side=tk.LEFT)
 
@@ -175,7 +175,7 @@ def interactive_plot(df):
         x_mins = []
         y_maxes = []
         y_mins = []
-        for year_col in range(1990, 2022):
+        for year_col in range(2010, 2022):
             x_maxes.append(df[re.sub(r'\(\d{4}\)', "(" + str(year_col) + ")", x_col)].max())
             y_maxes.append(df[re.sub(r'\(\d{4}\)', "(" + str(year_col) + ")", y_col)].max())
             x_mins.append(df[re.sub(r'\(\d{4}\)', "(" + str(year_col) + ")", x_col)].min())
@@ -203,12 +203,14 @@ def interactive_plot(df):
 
     x_dropdown = ttk.Combobox(controls_frame)
     x_dropdown.pack(side=tk.LEFT)
+    x_dropdown.config(width=60)
 
     y_label = tk.Label(controls_frame, text="Select Y-axis Variable:")
     y_label.pack(side=tk.LEFT)
 
     y_dropdown = ttk.Combobox(controls_frame)
     y_dropdown.pack(side=tk.LEFT)
+    y_dropdown.config(width=60)
 
     # Create the update button
     update_button = tk.Button(controls_frame, text="Update Plot", command=update_plot)
