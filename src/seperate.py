@@ -12,6 +12,41 @@ def open_file(file_path):
     df = pd.read_csv(file_path)
     return df
 
+def median(input_list):
+    input_list.sort()
+    if len(input_list) % 2 == 0:
+        middlePlusOne = len(input_list) // 2
+        median = (input_list[middlePlusOne -1] +
+        input_list[middlePlusOne]) / 2
+    else:
+        middle = len(input_list) // 2
+        median = input_list[middle]
+    return median
+
+def mode(input_list):
+    value = []
+    amounts = []
+    for item in input_list:
+        if item not in value:
+            value.append(item)
+    for colour in value:
+        total = input_list.count(colour)
+        amounts.append(total)
+
+    maxFreq = max(amounts)
+    maxFreqIndex = amounts.index(maxFreq)
+    mode = value[maxFreqIndex]
+
+
+    return mode
+
+def mean(input_list):
+    total = 0
+    for item in input_list:
+        total += item
+    average = total / len(input_list)
+    return average
+
 # Function to get all relevant columns for a given year
 def get_columns_for_year(df, year):
     # Use regex to find relevant columns for each year based on known patterns
