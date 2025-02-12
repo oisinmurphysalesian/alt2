@@ -189,5 +189,6 @@ def interactive_plot(df):
 
 
 # Load the data and create the interactive plot
+print("loading database")
 df = open_file('data.csv')  # Replace with the path to your data file
 interactive_plot(df)
