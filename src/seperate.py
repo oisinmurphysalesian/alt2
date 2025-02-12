@@ -194,12 +194,14 @@ def interactive_plot(df):
 
     x_dropdown = ttk.Combobox(controls_frame)
     x_dropdown.pack(side=tk.LEFT)
+    x_dropdown.config(width=50)
 
     y_label = tk.Label(controls_frame, text="Select Y-axis Variable:")
     y_label.pack(side=tk.LEFT)
 
     y_dropdown = ttk.Combobox(controls_frame)
     y_dropdown.pack(side=tk.LEFT)
+    y_dropdown.config(width=50)
 
     # Create the update button
     update_button = tk.Button(controls_frame, text="Update Plot", command=update_plot)
