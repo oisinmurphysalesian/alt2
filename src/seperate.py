@@ -12,41 +12,6 @@ def open_file(file_path):
     df = pd.read_csv(file_path)
     return df
 
-def median(input_list):
-    input_list.sort()
-    if len(input_list) % 2 == 0:
-        middlePlusOne = len(input_list) // 2
-        median = (input_list[middlePlusOne -1] +
-        input_list[middlePlusOne]) / 2
-    else:
-        middle = len(input_list) // 2
-        median = input_list[middle]
-    return median
-
-def mode(input_list):
-    value = []
-    amounts = []
-    for item in input_list:
-        if item not in value:
-            value.append(item)
-    for colour in value:
-        total = input_list.count(colour)
-        amounts.append(total)
-
-    maxFreq = max(amounts)
-    maxFreqIndex = amounts.index(maxFreq)
-    mode = value[maxFreqIndex]
-
-
-    return mode
-
-def mean(input_list):
-    total = 0
-    for item in input_list:
-        total += item
-    average = total / len(input_list)
-    return average
-
 # Function to get all relevant columns for a given year
 def get_columns_for_year(df, year):
     # Use regex to find relevant columns for each year based on known patterns
@@ -70,9 +35,18 @@ def get_columns_for_year(df, year):
         'HDI Adjusted': [col for col in df.columns if re.match(f"Inequality-adjusted Human Development Index \({year}\)", col)],
         'Inequality': [col for col in df.columns if re.match(f"Coefficient of human inequality \({year}\)", col)],
         'Loss': [col for col in df.columns if re.match(f"Overall loss \(\%\)  \({year}\)", col)],
-        'GNI': [col for col in df.columns if re.match(f"Gross National Income Per Capita \({year}\)", col)],
-        'GNI': [col for col in df.columns if re.match(f"Gross National Income Per Capita \({year}\)", col)],
-        'GNI': [col for col in df.columns if re.match(f"Gross National Income Per Capita \({year}\)", col)],
+        'Inequality in life expectancy': [col for col in df.columns if re.match(f"Inequality in life expectancy  \({year}\)", col)]
+        'Inequality in eduation': [col for col in df.columns if re.match(f"Inequality in eduation \({year}\)", col)],
+        'Inequality in income': [col for col in df.columns if re.match(f"Inequality in income \({year}\)", col)],
+        'Gender inequality': [col for col in df.columns if re.match(f"Gender Inequality Index \({year}\)", col)],
+        'Maternal morality': [col for col in df.columns if re.match(f"Maternal Mortality Ratio \(deaths per 100,000 live births\) \({year}\)", col)],
+        'Adolescent birth rate': [col for col in df.columns if re.match(f"Adolescent Birth Rate \(births per 1,000 women ages 15-19\) \({year}\)", col)],
+        'Labour force female': [col for col in df.columns if re.match(f"Labour force participation rate, female \(% ages 15 and older\) \({year}\)", col)],
+        'Labour force male': [col for col in df.columns if re.match(f"Labour force participation rate, male \(% ages 15 and older\) \({year}\)", col)],
+        'Planetary pressures': [col for col in df.columns if re.match(f"Planetary pressures-adjusted Human Development Index \({year}\)", col)],
+        'HDI': [col for col in df.columns if re.match(f"Difference from HDI value \(%\) \({year}\)", col)],
+        'Carbon dioxide': [col for col in df.columns if re.match(f"Carbon dioxide emissions per capita \(production\) \(tonnes\) \({year}\)", col)],
+        'Material footprint': [col for col in df.columns if re.match(f"Material footprint per capita \(tonnes\) \({year}\)", col)],
         # Add more categories if needed (like GDI, HDI, etc.)
     }
     return columns
@@ -194,14 +168,12 @@ def interactive_plot(df):
 
     x_dropdown = ttk.Combobox(controls_frame)
     x_dropdown.pack(side=tk.LEFT)
-    x_dropdown.config(width=50)
 
     y_label = tk.Label(controls_frame, text="Select Y-axis Variable:")
     y_label.pack(side=tk.LEFT)
 
     y_dropdown = ttk.Combobox(controls_frame)
     y_dropdown.pack(side=tk.LEFT)
-    y_dropdown.config(width=50)
 
     # Create the update button
     update_button = tk.Button(controls_frame, text="Update Plot", command=update_plot)
